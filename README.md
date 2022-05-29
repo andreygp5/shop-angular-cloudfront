@@ -29,3 +29,9 @@ Follow the steps:
 - git clone
 - npm i
 - ng serve
+
+## Deploy
+
+Enter the following command to create/update S3 bucket, configure it, create Cloudfront distribution and invalidate it:
+
+- npm run cloudfront:update:build:deploy:nc
