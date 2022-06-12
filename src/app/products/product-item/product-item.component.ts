@@ -4,6 +4,7 @@ import { CartService } from '../../cart/cart.service';
 import { Observable } from 'rxjs';
 import { map, shareReplay, tap } from 'rxjs/operators';
 import { CartCountControlsComponent } from '../../core/cart-count-controls/cart-count-controls.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-item',
@@ -23,7 +24,10 @@ export class ProductItemComponent implements OnInit {
 
   countInCart$!: Observable<number>;
 
-  constructor(private readonly cartService: CartService) {}
+  constructor(
+    private readonly cartService: CartService,
+    private router: Router
+  ) {}
 
   get id(): string {
     return this.product.id;
@@ -52,6 +56,10 @@ export class ProductItemComponent implements OnInit {
 
   remove(): void {
     this.cartService.removeItem(this.id);
+  }
+
+  goToProduct(): void {
+    this.router.navigate([this.id]).then();
   }
 
   /** Move focus to a corresponding control when controls switch */
