@@ -1,10 +1,15 @@
+import { EntityMetadata } from '../shared/model/entity-metadata.model';
+
 export interface Product {
-  /** Available count */
-  count: number;
-  description: string;
   id: string;
-  price: number;
+
   title: string;
+  description?: string;
+
+  price: number;
+  count: number;
+
+  metadata: EntityMetadata;
 }
 
 export interface ProductCheckout extends Product {
