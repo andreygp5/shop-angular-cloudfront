@@ -1,6 +1,6 @@
 <div class="product-detail" *ngIf="product$ | async as product">
   <div class="product-detail__left-col">
-    <img class="product-detail__image" [src]="product.metadata.imagesSrc[0]" alt="" />
+    <img class="product-detail__image" [src]="product.images[0]" alt="" />
     <p class="product-detail__price">{{ product.price }}$</p>
   </div>
 

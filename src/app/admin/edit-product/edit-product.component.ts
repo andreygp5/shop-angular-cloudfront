@@ -6,7 +6,9 @@ import {
 } from '@angular/core';
 import {
   AbstractControl,
+  FormArray,
   FormBuilder,
+  FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
@@ -44,6 +46,9 @@ export class EditProductComponent implements OnInit, OnDestroy {
   get titleCtrl(): AbstractControl {
     return this.form.get('title') as AbstractControl;
   }
+  get imagesCtrl(): FormArray {
+    return this.form.get('images') as FormArray;
+  }
 
   private readonly onDestroy$: Subject<void> = new Subject();
 
@@ -59,6 +64,7 @@ export class EditProductComponent implements OnInit, OnDestroy {
       description: ['', Validators.required],
       price: ['', Validators.required],
       count: ['', Validators.required],
+      images: this.fb.array([new FormControl('')]),
     });
   }
 
@@ -110,5 +116,13 @@ export class EditProductComponent implements OnInit, OnDestroy {
         );
       }
     );
+  }
+
+  addImage(): void {
+    this.imagesCtrl.push(new FormControl(''));
+  }
+
+  removeImage(index: number): void {
+    this.imagesCtrl.removeAt(index);
   }
 }
